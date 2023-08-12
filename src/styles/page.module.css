@@ -1,0 +1,58 @@
+/* page.module.css */
+
+.text-center {
+    text-align: center;
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    width: 200px;
+    height: 200px;
+}
+
+.main-content {
+    margin-top: 4rem;
+    margin-bottom: 8rem;
+}
+
+.welcome-text {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    color: #003d5b;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: 2px solid #00798c;
+    border-radius: 5px;
+    color: #00798c;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.button:hover {
+    background-color: #00798c;
+    color: white;
+    text-decoration: none;
+}
+
+/* Responsive Tailwind CSS classes */
+@media (max-width: 640px) {
+    .logo {
+        width: 150px;
+        height: 150px;
+    }
+}

@@ -1,0 +1,49 @@
+/* capsule-creation-form.module.css */
+
+.capsuleCreationFormContainer {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #d1d1d1;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+.capsuleCreationForm {
+    display: grid;
+    gap: 10px;
+}
+
+.capsuleCreationForm label {
+    font-weight: bold;
+}
+
+.capsuleCreationForm input,
+.capsuleCreationForm textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.capsuleCreationForm input[type="date"] {
+    padding: 8px;
+}
+
+.createButton {
+    display: inline-block;
+    padding: 10px 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 5px;
+    background-color: #00798c;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.createButton:hover {
+    background-color: #005f6b;
+}

@@ -1,0 +1,17 @@
+/* capsule-tags.module.css */
+
+.capsuleTagsContainer {
+    margin-top: 20px;
+}
+
+.capsuleTagsList {
+    list-style: none;
+    padding: 0;
+}
+
+.capsuleTag {
+    background-color: #f0f0f0;
+    padding: 5px 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}

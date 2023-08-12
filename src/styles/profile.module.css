@@ -1,0 +1,44 @@
+/* profile.module.css */
+
+.profileContainer {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.profileHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.editProfileButton {
+    padding: 10px 20px;
+    background-color: #00798c;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.contentContainer {
+    height: 400px;
+    /* Set the desired fixed height */
+    overflow: hidden;
+}
+
+.content {
+    transition: opacity 0.3s ease-in-out;
+    opacity: 1;
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+    height: 0;
+    overflow: hidden;
+}
+
+.toggleButton {
+    margin-top: 10px;
+}

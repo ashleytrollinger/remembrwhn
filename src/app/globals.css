@@ -4,24 +4,39 @@
 
 :root {
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --background-light-rgb: 237, 174, 73;
+  /* #edae49 */
+  --background-dark-rgb: 209, 73, 91;
+  /* #d1495b */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+  }
+
+  body {
+    color: rgb(var(--foreground-rgb));
+    background: linear-gradient(to bottom,
+        transparent,
+        rgb(var(--background-dark-rgb)));
   }
 }
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background-color: rgb(var(--background-light-rgb));
 }
+
+/* Adjustments to fit your theme */
+/* For example, changing link colors */
+a {
+  color: #00798c;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: #003d5b;
+}
+
+/* Add more adjustments as needed */
