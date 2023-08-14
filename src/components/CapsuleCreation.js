@@ -37,9 +37,12 @@ export default function CapsuleCreationForm() {
 
   return (
     <div className={styles.capsuleCreationFormContainer}>
-      <h3>Create a New Capsule</h3>
+      <h3 className={styles.formHeading}>Create a New Capsule</h3>
       <form className={styles.capsuleCreationForm} onSubmit={handleSubmit}>
         <label htmlFor="title">Capsule Title:</label>
+        <p className={styles.inputDescription}>
+          Titles will be displayed on your profile but contents of capsule will be locked
+        </p>
         <input
           type="text"
           id="title"
@@ -66,6 +69,9 @@ export default function CapsuleCreationForm() {
           onChange={handlePhotosChange}
         />
         <label htmlFor="openDate">Open Date:</label>
+        <p className={styles.inputDescription}>
+          This is when your capsule will be visible again. Choose wisely as this cannot be changed.
+        </p>
         <input
           type="date"
           id="openDate"

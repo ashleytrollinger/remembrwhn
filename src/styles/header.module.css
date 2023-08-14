@@ -1,9 +1,5 @@
-/* header.module.css */
-
 .header {
-
     color: white;
-
 }
 
 .header-content {
@@ -14,23 +10,22 @@
 
 .header-title {
     font-size: 4rem;
-    background: linear-gradient(90deg, #003d5b, #00a2c5, #00798c, #d1495b);
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
+    color: #264653; 
+    
+}
+
+.header-title span {
+font-weight: bold;/* whn color */
 }
 
 .header-title:hover {
     font-size: 4rem;
-    background: linear-gradient(90deg, #d1495b, #003d5b, #00a2c5, #00798c);
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
+    font-weight: bold; /* Bold on hover */
 }
 
 /* Responsive Tailwind CSS classes */
 @media (max-width: 640px) {
     .header-title {
-        font-size: 1.5rem;
+        font-size: 2.5rem;
     }
 }

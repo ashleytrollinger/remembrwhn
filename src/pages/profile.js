@@ -55,30 +55,40 @@ export default function Profile() {
     <RootLayout>
       <div className={styles.profileContainer}>
         <div className={styles.profileHeader}>
-          <h2>Welcome back, {user.username || user.email}!</h2>
+        <h2 className={styles.welcomeHeading}>Welcome back, {user.username || user.email}!</h2>
           <a href="/edit-profile" className={styles.editProfileButton}>
             Edit Profile
           </a>
         </div>
+        <div className={styles.toggleButtonGroup}>
+          <button
+            onClick={() => setShowCapsuleTags(true)}
+            className={`${styles.capsulesButton} ${showCapsuleTags ? styles.active : ''}`}
+          >
+            Your Capsules
+          </button>
+          <button
+            onClick={() => setShowCapsuleTags(false)}
+            className={`${styles.addButton} ${!showCapsuleTags ? styles.active : ''}`}
+          >
+            +
+          </button>
+        </div>
+
         <div className={styles.contentContainer}>
           <div
             className={`${styles.content} ${showCapsuleTags ? '' : styles.hidden}`}
           >
-            <CapsuleTags />
+            {showCapsuleTags && <CapsuleTags />}
           </div>
           <div
             className={`${styles.content} ${showCapsuleTags ? styles.hidden : ''}`}
           >
-            <CapsuleCreation />
+            {!showCapsuleTags && <CapsuleCreation />}
           </div>
         </div>
-        <button
-          onClick={() => setShowCapsuleTags(!showCapsuleTags)}
-          className={styles.toggleButton}
-        >
-          {showCapsuleTags ? '+' : 'Back to Capsules'}
-        </button>
       </div>
     </RootLayout>
   );
 }
+

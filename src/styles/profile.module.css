@@ -1,9 +1,8 @@
-/* profile.module.css */
-
 .profileContainer {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
+    background-color: white;
 }
 
 .profileHeader {
@@ -15,14 +14,61 @@
 
 .editProfileButton {
     padding: 10px 20px;
-    background-color: #00798c;
+    background-color: #2a9d8f;
+    /* Updated to teal color */
     color: white;
     text-decoration: none;
     border-radius: 5px;
 }
 
+.toggleButtonGroup {
+    display: flex;
+    margin-bottom: 10px;
+
+}
+
+/* Styling for the Your Capsules button */
+.capsulesButton {
+    flex: none;
+    /* Take up only the space needed */
+    padding: 10px;
+    background-color: #e9c46a;
+    /* Original yellow color */
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 50px;
+    /* Make it circular */
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* Styling for the + button */
+.addButton {
+    flex: none;
+    /* Take up only the space needed */
+    padding: 10px;
+    background-color: #e9c46a;
+    /* Original orange color */
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 50px;
+    /* Make it circular */
+    transition: background-color 0.3s ease-in-out;
+}
+
+.active {
+    background-color: #f4a261;
+    /* Updated to darker blue color */
+}
+
+.inactive {
+    background-color: white;
+    /* Set background color for inactive tab */
+}
+
 .contentContainer {
-    height: 400px;
+    height: auto;
     /* Set the desired fixed height */
     overflow: hidden;
 }
@@ -38,7 +84,8 @@
     height: 0;
     overflow: hidden;
 }
-
-.toggleButton {
-    margin-top: 10px;
-}
+.welcomeHeading {
+    font-size: 2rem; /* Updated font size */
+    color: #264653; /* Update to coral color */
+    margin-bottom: 1rem;
+  }

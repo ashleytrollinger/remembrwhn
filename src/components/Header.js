@@ -7,7 +7,7 @@ export default function Header() {
         <header className={styles.header}>
             <div className={styles['header-content']}>
                 <Link href="/" className={styles['header-title']}>
-                    RemembrWhn
+                    Remembr<span>Whn</span>
                 </Link>
             </div>
         </header>

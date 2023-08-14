@@ -1,13 +1,14 @@
+/* styles/globals.css */
+
+/* Your existing global CSS rules */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
   --foreground-rgb: 0, 0, 0;
-  --background-light-rgb: 237, 174, 73;
-  /* #edae49 */
-  --background-dark-rgb: 209, 73, 91;
-  /* #d1495b */
+  --background-light-rgb: 255, 255, 255;
+  --background-dark-rgb: 238, 238, 238;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -17,26 +18,31 @@
 
   body {
     color: rgb(var(--foreground-rgb));
-    background: linear-gradient(to bottom,
-        transparent,
-        rgb(var(--background-dark-rgb)));
+    background-color: rgb(var(--background-dark-rgb));
   }
 }
 
 body {
   color: rgb(var(--foreground-rgb));
   background-color: rgb(var(--background-light-rgb));
+  background-image: url('/background.png');
+  /* Set the background image properties */
+  background-repeat: repeat;
+  background-size: auto;
+  background-position:center;
 }
 
 /* Adjustments to fit your theme */
 /* For example, changing link colors */
 a {
-  color: #00798c;
+  color: #06d6a0;
+  /* Change to teal color */
   transition: color 0.3s;
 }
 
 a:hover {
-  color: #003d5b;
+  color: #118ab2;
+  /* Change to blue color */
 }
 
 /* Add more adjustments as needed */
