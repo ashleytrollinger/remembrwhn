@@ -1,3 +1,14 @@
+/* styles/page.module.css */
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+
+}
+
+
 .text-center {
     text-align: center;
 }
@@ -11,14 +22,28 @@
 .logo {
     width: 300px;
     height: 300px;
-    margin-bottom: 2rem;
-
 }
 
 .main-content {
-    margin-top: 4rem;
+    display: flex;
+    align-items: center;
     margin-bottom: 8rem;
+    padding: 20px;
+    /* Add padding for spacing */
+
+    border-radius: 15px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    /* Add box shadow */
+}
+
+.text-container {
+    flex: 1;
+    padding: 1rem;
     background-color: white;
+    border-radius: 5px;
+    border-width: 1px;
+    border-color: #264653;
+    padding: .5em;
 }
 
 .welcome-text {
@@ -46,6 +71,7 @@
 .getStartedButton {
     border: 2px solid #2a9d8f;
     color: #2a9d8f;
+    background-color: white;
 }
 
 .getStartedButton:hover {
@@ -57,6 +83,7 @@
 .loginButton {
     border: 2px solid #e76f51;
     color: #e76f51;
+    background-color: white;
 }
 
 .loginButton:hover {
@@ -70,5 +97,9 @@
     .logo {
         width: 150px;
         height: 150px;
+    }
+
+    .main-content {
+        flex-direction: column;
     }
 }

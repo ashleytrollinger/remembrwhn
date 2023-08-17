@@ -10,17 +10,20 @@
 
 .header-title {
     font-size: 4rem;
-    color: #264653; 
-    
+    color: #264653;
+    text-shadow: 2px 2px 4px white;
+
 }
 
 .header-title span {
-font-weight: bold;/* whn color */
+    font-weight: bold;
+    /* whn color */
 }
 
 .header-title:hover {
     font-size: 4rem;
-    font-weight: bold; /* Bold on hover */
+    font-weight: bold;
+    /* Bold on hover */
 }
 
 /* Responsive Tailwind CSS classes */

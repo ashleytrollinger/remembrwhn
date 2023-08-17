@@ -10,6 +10,7 @@ export default function Profile() {
   const router = useRouter();
   const [showCapsuleTags, setShowCapsuleTags] = useState(true);
   const [user, setUser] = useState(null);
+  const [userData, setUserData] = useState(null);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -18,13 +19,15 @@ export default function Profile() {
         if (data) {
           setUser(data);
           console.log(data);
-          console.log("the user id is: " + data.user.id);
+          console.log("the user id is: " + data.user.email);
+          const userEmail = data.user.email;
           // Fetch additional user data from the 'users' table
           const { data: userData, error: userError } = await supabase
             .from('users')
             .select('*')
-            .eq('id', data.user.id)
-            .single();
+            .eq('email', userEmail)
+
+          console.log("userdata", userData[0]);
 
           if (userError) {
             console.error('Error fetching user data:', userError.message);
@@ -32,7 +35,7 @@ export default function Profile() {
           }
 
           // Merge the user data with the existing user object
-          setUser({ ...data, ...userData });
+          setUserData(userData);
         } else {
           router.push('/login');
         }
@@ -46,7 +49,7 @@ export default function Profile() {
   }, [router]);
 
 
-  if (!user) {
+  if (!user || !userData) {
     // Handle case when user data is still loading or user is not logged in
     return <div>Loading...</div>;
   }
@@ -55,11 +58,20 @@ export default function Profile() {
     <RootLayout>
       <div className={styles.profileContainer}>
         <div className={styles.profileHeader}>
-        <h2 className={styles.welcomeHeading}>Welcome back, {user.username || user.email}!</h2>
+          <h2 className={styles.welcomeHeading}>
+            Welcome back, {userData[0].username || userData[0].email}!
+          </h2>
           <a href="/edit-profile" className={styles.editProfileButton}>
             Edit Profile
           </a>
         </div>
+        <div className={styles.userDetailsContainer}>
+          <div className={styles.userDetails}>
+            <div>{userData[0].email}</div>
+            <div>{userData[0].phone_number}</div>
+          </div>
+        </div>
+
         <div className={styles.toggleButtonGroup}>
           <button
             onClick={() => setShowCapsuleTags(true)}
@@ -84,7 +96,7 @@ export default function Profile() {
           <div
             className={`${styles.content} ${showCapsuleTags ? styles.hidden : ''}`}
           >
-            {!showCapsuleTags && <CapsuleCreation />}
+            {!showCapsuleTags && <CapsuleCreation user={userData} />}
           </div>
         </div>
       </div>

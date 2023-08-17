@@ -3,6 +3,9 @@
     margin: 0 auto;
     padding: 20px;
     background-color: white;
+    border: 5px solid #e76f51;
+    border-radius: 5px;
+    box-shadow: 0px 0px 20px 5px white;
 }
 
 .profileHeader {
@@ -10,6 +13,7 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: 20px;
+
 }
 
 .editProfileButton {
@@ -84,8 +88,27 @@
     height: 0;
     overflow: hidden;
 }
+
 .welcomeHeading {
-    font-size: 2rem; /* Updated font size */
-    color: #264653; /* Update to coral color */
-    margin-bottom: 1rem;
-  }
+    font-size: 2rem;
+    /* Updated font size */
+    color: #264653;
+
+}
+
+.userDetails {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: .5rem;
+}
+
+.userDetails div{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border: 2px solid #2a9d8f; 
+    border-radius: 25px;
+    padding: 5px;  
+    position: relative;
+}

@@ -18,26 +18,6 @@ export default function SignUp() {
     e.preventDefault();
 
     try {
-      // Insert user data into the 'users' table
-      const { data: userData, error: dataError } = await supabase
-        .from('users')
-        .upsert([
-          {
-            email: email,
-            password: password,
-            name: name,
-            username: username,
-            phone_number: phone,
-          },
-        ]);
-
-      if (dataError) {
-        console.error('Error storing user data:', dataError.message);
-        return;
-      }
-
-      console.log('User data stored:', userData);
-
       // Create authentication credentials
       const { user, error } = await supabase.auth.signUp({
         email: email,
@@ -52,9 +32,33 @@ export default function SignUp() {
       console.log('Signup successful:', user);
 
       // Store authentication data in the user's profile
-      await supabase
+      const authData = {
+        auth_id: user.id, // Store the auth_id as a string
+      };
+
+      // Insert user data into the 'users' table
+      const { data: userData, error: dataError } = await supabase
         .from('users')
-        .upsert([{ auth_data: user.id }], { onConflict: ['email'] });
+        .upsert(
+          [
+            {
+              email: email,
+              password: password,
+              name: name,
+              username: username,
+              phone_number: phone,
+              auth_data: authData, // Store the auth_id JSON object
+            },
+          ],
+          { onConflict: ['email'] }
+        );
+
+      if (dataError) {
+        console.error('Error storing user data:', dataError.message);
+        return;
+      }
+
+      console.log('User data stored:', userData);
 
       // Redirect to a new page or perform other actions after successful signup
       router.push('/profile'); // Example: Redirect to the profile page

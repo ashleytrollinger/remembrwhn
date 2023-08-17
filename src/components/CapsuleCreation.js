@@ -1,7 +1,8 @@
 import React from 'react';
+import supabase from '../../utils/supabase';
 import styles from '../styles/capsule-creation.module.css';
 
-export default function CapsuleCreationForm() {
+export default function CapsuleCreationForm(props) {
   const [title, setTitle] = React.useState('');
   const [message, setMessage] = React.useState('');
   const [photos, setPhotos] = React.useState([]);
@@ -16,7 +17,6 @@ export default function CapsuleCreationForm() {
   };
 
   const handlePhotosChange = (event) => {
-    // Assuming you have a function to handle photo uploads and update the `photos` state
     const uploadedPhotos = Array.from(event.target.files);
     setPhotos(uploadedPhotos);
   };
@@ -25,14 +25,34 @@ export default function CapsuleCreationForm() {
     setOpenDate(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Handle capsule creation logic here, e.g., sending API request
-    // Reset the form
-    setTitle('');
-    setMessage('');
-    setPhotos([]);
-    setOpenDate('');
+    console.log("props", props);
+    // Construct the capsule data to be inserted
+    const capsuleData = {
+      user_id: props.user[0].id, // Accessing user ID from the prop
+      title,
+      message,
+      photos: photos.map((photo) => photo.name), // Store photo filenames
+      expiration_date: new Date(openDate).toISOString(),
+    };
+
+    // Insert the capsule data into the Supabase database
+    try {
+      const { data, error } = await supabase.from('capsules').insert([capsuleData]);
+      if (error) {
+        console.error('Error inserting capsule data:', error.message);
+        return;
+      }
+      console.log('Capsule data inserted successfully:', data);
+      // Reset the form
+      setTitle('');
+      setMessage('');
+      setPhotos([]);
+      setOpenDate('');
+    } catch (error) {
+      console.error('Error inserting capsule data:', error.message);
+    }
   };
 
   return (
