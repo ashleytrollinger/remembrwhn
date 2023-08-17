@@ -91,7 +91,7 @@ export default function Profile() {
           <div
             className={`${styles.content} ${showCapsuleTags ? '' : styles.hidden}`}
           >
-            {showCapsuleTags && <CapsuleTags />}
+            {showCapsuleTags && <CapsuleTags user={userData} />}
           </div>
           <div
             className={`${styles.content} ${showCapsuleTags ? styles.hidden : ''}`}
