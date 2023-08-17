@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import supabase from '../../utils/supabase';
-import CapsuleTag from './CapsuleTag'; // Make sure the import path is correct
+import CapsuleTag from './CapsuleTag';
 import styles from '../styles/capsule-tags.module.css';
 
 export default function CapsuleTags(props) {
@@ -20,7 +20,14 @@ export default function CapsuleTags(props) {
                     return;
                 }
 
-                setCapsules(capsules);
+                // Sort capsules: ready ones at the top, then by expiration date
+                const sortedCapsules = capsules.sort((a, b) => {
+                    if (a.ready && !b.ready) return -1;
+                    if (!a.ready && b.ready) return 1;
+                    return new Date(a.expiration_date) - new Date(b.expiration_date);
+                });
+
+                setCapsules(sortedCapsules);
             } catch (error) {
                 console.error('Error fetching capsules:', error.message);
             }
@@ -31,7 +38,6 @@ export default function CapsuleTags(props) {
 
     return (
         <div className={styles.capsuleTagsContainer}>
-
             <ul className={styles.capsuleTagsList}>
                 {capsules.map((capsule) => (
                     <CapsuleTag key={capsule.id} capsule={capsule} />
@@ -40,4 +46,3 @@ export default function CapsuleTags(props) {
         </div>
     );
 }
-

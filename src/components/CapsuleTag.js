@@ -29,7 +29,7 @@ export default function CapsuleTag({ capsule }) {
                     ) : isReadyToView ? (
                         <span>Ready to view</span>
                     ) : (
-                        `Available on: ${expirationDate.toLocaleDateString()}`
+                        ` ${expirationDate.toLocaleDateString()}`
                     )}
                 </span>
             </div>

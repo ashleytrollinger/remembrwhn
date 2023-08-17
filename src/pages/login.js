@@ -43,7 +43,7 @@ export default function Login() {
 
   return (
     <RootLayout>
-      <div>
+      
         <main>
           <div className={styles['text-center']}>
             <form className={styles['login-form']} onSubmit={handleLogin}>
@@ -77,7 +77,7 @@ export default function Login() {
             </div>
           </div>
         </main>
-      </div>
+    
     </RootLayout>
   );
 }

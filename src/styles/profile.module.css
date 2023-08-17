@@ -15,6 +15,9 @@
     margin-bottom: 20px;
 
 }
+.profileHeader em{
+    font-weight: bold;
+}
 
 .editProfileButton {
     padding: 10px 20px;

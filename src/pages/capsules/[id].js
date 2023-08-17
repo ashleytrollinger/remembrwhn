@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 import supabase from '../../../utils/supabase';
 import RootLayout from '../../app/layout';
 import styles from '../../styles/capsule-page.module.css';
@@ -8,6 +9,9 @@ export default function CapsulePage() {
     const router = useRouter();
     const { id } = router.query; // Get the capsule ID from the URL
     const [capsule, setCapsule] = useState(null);
+    const [newExpirationDate, setNewExpirationDate] = useState('');
+    const [isUpdating, setIsUpdating] = useState(false);
+    const [isReburyFormVisible, setIsReburyFormVisible] = useState(false);
 
     useEffect(() => {
         if (id) {
@@ -36,6 +40,39 @@ export default function CapsulePage() {
         }
     }, [id]);
 
+    const handleExpirationDateChange = (event) => {
+        setNewExpirationDate(event.target.value);
+    };
+
+    const handleReburySubmit = async (event) => {
+        event.preventDefault();
+
+        if (!newExpirationDate) {
+            return;
+        }
+
+        setIsUpdating(true);
+
+        try {
+            const { error } = await supabase
+                .from('capsules')
+                .update({ expiration_date: newExpirationDate })
+                .eq('id', id);
+
+            if (error) {
+                console.error('Error updating expiration date:', error.message);
+                return;
+            }
+
+            // Successfully updated, navigate back to profile page
+            router.push('/profile');
+        } catch (error) {
+            console.error('Error updating expiration date:', error.message);
+        } finally {
+            setIsUpdating(false);
+        }
+    };
+
     if (!capsule) {
         return <div>Loading...</div>;
     }
@@ -54,15 +91,33 @@ export default function CapsulePage() {
                 </div>
                 <p className={styles.capsuleMessage}>{capsule.message}</p>
                 <div className={styles.reburySection}>
-                    {/* ... (same as before) */}
+                    <button
+                        className={styles.reburyButton}
+                        onClick={() => setIsReburyFormVisible(true)}
+                    >
+                        Rebury Capsule
+                    </button>
+                    {isReburyFormVisible && (
+                        <form className={styles.reburyForm} onSubmit={handleReburySubmit}>
+                            <label htmlFor="newExpirationDate">Update Expiration Date:</label>
+                            <input
+                                type="date"
+                                id="newExpirationDate"
+                                name="newExpirationDate"
+                                value={newExpirationDate}
+                                onChange={handleExpirationDateChange}
+                                required
+                            />
+                            <button type="submit" className={styles.reburyButton} disabled={isUpdating}>
+                                {isUpdating ? 'Updating...' : 'Rebury'}
+                            </button>
+                        </form>
+                    )}
                 </div>
-                {capsule.photos && (
-                    <div className={styles.photosContainer}>
-                        {capsule.photos.map((photoUrl, index) => (
-                            <img key={index} src={photoUrl} alt={`Photo ${index}`} className={styles.capsulePhoto} />
-                        ))}
-                    </div>
-                )}
+                {/* Rest of your content */}
+                <div className={styles.profileButtonContainer}>
+                    <Link href="/profile">Back to Profile</Link>
+                </div>
             </div>
         </RootLayout>
     );
