@@ -1,5 +1,13 @@
+@font-face {
+    font-family: 'Museo Moderno';
+    src: url('./fonts/MuseoModerno/MuseoModerno-VariableFont_wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .header {
     color: white;
+    font-family: 'Museo Moderno', sans-serif;
 }
 
 .header-content {
@@ -9,20 +17,18 @@
 }
 
 .header-title {
-    font-size: 4rem;
-    color: #264653;
-    text-shadow: 2px 2px 4px white;
+    font-size: 6rem;
+    color: #F0544F;
 
 }
 
 .header-title span {
     font-weight: bold;
-    /* whn color */
+    color:#D81E5B;
 }
 
-.header-title:hover {
-    font-size: 4rem;
-    font-weight: bold;
+.header-content:hover {
+    font-weight: bolder;
     /* Bold on hover */
 }
 

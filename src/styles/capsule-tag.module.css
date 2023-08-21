@@ -1,29 +1,37 @@
+/* Font */
+@font-face {
+    font-family: 'Urbanist';
+    src: url('./fonts/Urbanist/Urbanist-VariableFont_wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .capsuleTag {
     list-style: none;
+    background-color: #FFF7E6;
     margin: 0;
     padding: 0;
-    border:solid #2a9d8f ;
-    border-radius: 25px; /* Add a border */
-    margin-bottom: 10px; /* Add some margin between capsules */
+    border: solid #F0544F;
+    border-radius: 25px;
+    margin-bottom: 10px;
+}
 
-    
-}
-.capsuleTag:hover{
-    box-shadow: 0 3.5px #264653;
-}
 
 .tagContent {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
+    font-family: 'Urbana', sans-serif;
 }
 
 .capsuleTitle {
     font-weight: bold;
+    text-transform: uppercase;
+    color: #3F2A2B;
 }
 
 .capsuleExpiration {
     font-size: 1rem;
-    color: #666;
+    color: #3F2A2B;
 }

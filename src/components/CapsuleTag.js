@@ -25,11 +25,17 @@ export default function CapsuleTag({ capsule }) {
                 <span className={styles.capsuleTitle}>{capsule.title}</span>
                 <span className={styles.capsuleExpiration}>
                     {isExpired ? (
-                        <a href="#">View Now</a>
+                        <>
+                            <a href="#">View Now</a>
+                  
+                        </>
                     ) : isReadyToView ? (
                         <span>Ready to view</span>
                     ) : (
-                        ` ${expirationDate.toLocaleDateString()}`
+                        <>
+                            {expirationDate.toLocaleDateString()}
+                           
+                        </>
                     )}
                 </span>
             </div>

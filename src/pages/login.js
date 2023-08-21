@@ -70,10 +70,10 @@ export default function Login() {
                   required
                 />
               </div>
-              <button type="submit" className={styles.button}>Login</button>
+              <button type="submit" className={styles.button}>LOGIN</button>
             </form>
             <div>
-              <p>Don't have an account? <Link href="/signup" className={styles['login-link']}>Sign Up</Link></p>
+              <p className={styles['login-p']}>Don't have an account? <Link href="/signup" className={styles['login-link']}>Sign Up</Link></p>
             </div>
           </div>
         </main>

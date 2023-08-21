@@ -24,25 +24,7 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background-color: rgb(var(--background-light-rgb));
-  /* Set background image properties */
-  background-image: url('/background.png');
-  background-repeat: repeat;
-  background-size: 10%; /* Adjust the size of the tiled images */
-  background-position: center;
+  background-color: #331832;
+  /* Set the background color to #331832 */
 }
 
-/* Adjustments to fit your theme */
-/* For example, changing link colors */
-a {
-  color: #06d6a0;
-  /* Change to teal color */
-  transition: color 0.3s;
-}
-
-a:hover {
-  color: #118ab2;
-  /* Change to blue color */
-}
-
-/* Add more adjustments as needed */

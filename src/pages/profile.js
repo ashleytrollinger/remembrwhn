@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import supabase from '../../utils/supabase';
 import RootLayout from '../app/layout';
-import styles from '../styles/profile.module.css';
+import styles from '../styles/profile.module.scss';
 import CapsuleCreation from '../components/CapsuleCreation';
 import CapsuleTags from '../components/CapsuleTags';
 
@@ -59,7 +59,7 @@ export default function Profile() {
       <div className={styles.profileContainer}>
         <div className={styles.profileHeader}>
           <h2 className={styles.welcomeHeading}>
-            Welcome back,<em>{userData[0].username || userData[0].email}</em> !
+            Welcome back, <em>{userData[0].username || userData[0].email}</em> !
           </h2>
           <a href="/edit-profile" className={styles.editProfileButton}>
             Edit Profile

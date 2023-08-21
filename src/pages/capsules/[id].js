@@ -44,6 +44,10 @@ export default function CapsulePage() {
         setNewExpirationDate(event.target.value);
     };
 
+    const handleReburyClick = () => {
+        setIsReburyFormVisible(!isReburyFormVisible);
+    };
+
     const handleReburySubmit = async (event) => {
         event.preventDefault();
 
@@ -72,7 +76,24 @@ export default function CapsulePage() {
             setIsUpdating(false);
         }
     };
+    const handleDeleteCapsule = async () => {
+        try {
+            const { error } = await supabase
+                .from('capsules')
+                .delete()
+                .eq('id', id);
 
+            if (error) {
+                console.error('Error deleting capsule:', error.message);
+                return;
+            }
+
+            // Successfully deleted, navigate back to profile page
+            router.push('/profile');
+        } catch (error) {
+            console.error('Error deleting capsule:', error.message);
+        }
+    };
     if (!capsule) {
         return <div>Loading...</div>;
     }
@@ -93,13 +114,16 @@ export default function CapsulePage() {
                 <div className={styles.reburySection}>
                     <button
                         className={styles.reburyButton}
-                        onClick={() => setIsReburyFormVisible(true)}
+                        onClick={handleReburyClick}
                     >
-                        Rebury Capsule
+                        {isReburyFormVisible ? '✕ Close' : 'Rebury Capsule'}
+                    </button>
+                    <button className={styles.deleteButton} onClick={handleDeleteCapsule}>
+                        Delete Capsule
                     </button>
                     {isReburyFormVisible && (
                         <form className={styles.reburyForm} onSubmit={handleReburySubmit}>
-                            <label htmlFor="newExpirationDate">Update Expiration Date:</label>
+                            <label htmlFor="newExpirationDate">This will relock your capsule as soon as you hit "Rebury". </label>
                             <input
                                 type="date"
                                 id="newExpirationDate"
@@ -116,7 +140,7 @@ export default function CapsulePage() {
                 </div>
                 {/* Rest of your content */}
                 <div className={styles.profileButtonContainer}>
-                    <Link href="/profile">Back to Profile</Link>
+                    <Link href="/profile">⇐Back to Profile</Link>
                 </div>
             </div>
         </RootLayout>

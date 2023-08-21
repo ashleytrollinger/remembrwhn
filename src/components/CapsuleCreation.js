@@ -1,3 +1,4 @@
+import { Router } from 'next/router';
 import React from 'react';
 import supabase from '../../utils/supabase';
 import styles from '../styles/capsule-creation.module.css';
@@ -27,13 +28,26 @@ export default function CapsuleCreationForm(props) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("props", props);
+
+    // Upload photos to the storage bucket and get their URLs
+    const photoUrls = await Promise.all(photos.map(async (photo) => {
+      const { data, error } = await supabase.storage.from('capsule-images').upload(photo.name, photo);
+      if (error) {
+        console.error('Error uploading photo:', error.message);
+        return null;
+      }
+      return data.Key;
+    }));
+
+    // Filter out any failed photo uploads
+    const validPhotoUrls = photoUrls.filter((url) => url !== null);
+
     // Construct the capsule data to be inserted
     const capsuleData = {
-      user_id: props.user[0].id, // Accessing user ID from the prop
+      user_id: props.user[0].id,
       title,
       message,
-      photos: photos.map((photo) => photo.name), // Store photo filenames
+      image_url: validPhotoUrls, // Store array of image URLs
       expiration_date: new Date(openDate).toISOString(),
     };
 
@@ -50,6 +64,8 @@ export default function CapsuleCreationForm(props) {
       setMessage('');
       setPhotos([]);
       setOpenDate('');
+
+      Router.push('/profile');
     } catch (error) {
       console.error('Error inserting capsule data:', error.message);
     }
