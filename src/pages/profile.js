@@ -61,9 +61,7 @@ export default function Profile() {
           <h2 className={styles.welcomeHeading}>
             Welcome back, <em>{userData[0].username || userData[0].email}</em> !
           </h2>
-          <a href="/edit-profile" className={styles.editProfileButton}>
-            Edit Profile
-          </a>
+          
         </div>
         <div className={styles.userDetailsContainer}>
           <div className={styles.userDetails}>

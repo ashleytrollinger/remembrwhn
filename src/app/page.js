@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import Logo from '../images/logo.png';
+import Capsule from '../images/Capsule.png';
 import styles from '../styles/page.module.css';
 
 export default function Home() {
@@ -11,11 +11,9 @@ export default function Home() {
         <div className={`${styles['main-content']}`}>
           <div className={`${styles['image-container']}`}>
             <Image
-              src={Logo}
+              src={Capsule}
               alt="RemembrWhn Logo"
               className={`${styles.logo}`}
-              width={200}
-              height={200}
             />
           </div>
           <div className={styles['text-container']}>

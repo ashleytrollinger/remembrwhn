@@ -44,7 +44,7 @@ export default function Login() {
   return (
     <RootLayout>
       
-        <main>
+        
           <div className={styles['text-center']}>
             <form className={styles['login-form']} onSubmit={handleLogin}>
               <h2>Login</h2>
@@ -76,7 +76,7 @@ export default function Login() {
               <p className={styles['login-p']}>Don't have an account? <Link href="/signup" className={styles['login-link']}>Sign Up</Link></p>
             </div>
           </div>
-        </main>
+  
     
     </RootLayout>
   );
