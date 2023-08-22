@@ -26,15 +26,15 @@ export default function CapsuleTag({ capsule }) {
                 <span className={styles.capsuleExpiration}>
                     {isExpired ? (
                         <>
-                            <a href="#">View Now</a>
-                  
+                            <a href="#" className={styles.viewNowLink}>View Now</a>
                         </>
                     ) : isReadyToView ? (
-                        <span>Ready to view</span>
+                        <span className={styles.readyToView}>Ready to view</span>
                     ) : (
                         <>
-                            {expirationDate.toLocaleDateString()}
-                           
+                            <span className={styles.expirationDate}>
+                                {expirationDate.toLocaleDateString()}
+                            </span>
                         </>
                     )}
                 </span>

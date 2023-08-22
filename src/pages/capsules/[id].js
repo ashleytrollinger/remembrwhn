@@ -111,6 +111,7 @@ export default function CapsulePage() {
                     <h2 className={styles.capsuleTitle}>{capsule.title}</h2>
                 </div>
                 <p className={styles.capsuleMessage}>{capsule.message}</p>
+                <br></br>
                 <div className={styles.reburySection}>
                     <button
                         className={styles.reburyButton}

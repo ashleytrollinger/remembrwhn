@@ -24,7 +24,7 @@
 
 .capsuleCreationForm {
     display: grid;
-    gap: 10px;
+    gap: 0.2rem;
 }
 
 .capsuleCreationForm label {
@@ -52,6 +52,7 @@
 
 .createButton {
     display: inline-block;
+    margin-top: 5px;
     padding: 10px 20px;
     font-weight: bold;
     text-transform: uppercase;
@@ -80,5 +81,3 @@
     color: #666;
 
 }
-
-

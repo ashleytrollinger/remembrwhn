@@ -1,13 +1,30 @@
+/* Fonts */
+@font-face {
+    font-family: 'Urbanist';
+    src: url('./fonts/Urbanist/Urbanist-VariableFont_wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Museo Moderno';
+    src: url('./fonts/MuseoModerno/MuseoModerno-VariableFont_wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Style for capsule when open */
 .capsuleContainer {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
-    background-color: white;
-    border: 5px solid #e76f51;
-    border-radius: 5px;
-    box-shadow: 0px 0px 20px 5px white;
+    background-color: #FDF0D5;
+    border: 5px solid #F0544F;
+    border-radius: 25px;
+    font-family: 'Urbanist', sans-serif;
 }
 
+/* X days ago + title */
 .capsuleHeader {
     display: flex;
     align-items: center;
@@ -15,21 +32,24 @@
 }
 
 .daysAgo {
-    font-size: 14px;
+    font-size: 1rem;
     color: #999;
     margin-right: 10px;
+    font-family: 'Museo Moderno';
 }
 
 .capsuleTitle {
-    font-size: 24px;
+    font-size: 2rem;
     font-weight: bold;
 }
 
+/* Capsule Message */
 .capsuleMessage {
-    font-size: 16px;
+    font-size: 1.25rem;
     margin-bottom: 20px;
 }
 
+/* Capsule photos */
 .photosContainer {
     display: flex;
     flex-wrap: wrap;
@@ -42,16 +62,49 @@
     margin-right: 10px;
     margin-bottom: 10px;
 }
-
-
+/* Rebury Button */
+.reburyButton{
+    margin-right: 5px;
+}
+/* Rebury and Delete Button */
+.deleteButton,
 .reburyButton {
-    background-color: #f4a261;
-    color: white;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    font-size: 14px;
+    display: inline-block;
+    padding: 0.75rem 1.25rem;
+    border-radius: 10rem;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 1rem;
+    letter-spacing: 0.15rem;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    background-color: #F0544F;
+}
+
+.deleteButton:before,
+.reburyButton:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #D81E5B;
+    border-radius: 10rem;
+    z-index: -2;
+    transition: all 0.3s;
+}
+
+.deleteButton:hover,
+.reburyButton:hover {
+    color: #fff;
+}
+
+.deleteButton:hover:before,
+.reburyButton:hover:before {
+    width: 0;
 }
 
 /* Style for the rebury form */
@@ -64,13 +117,13 @@
 
 .reburyForm label {
     margin-bottom: 6px;
-    width: 200px;
+    width: 350px;
 }
 
 .reburyForm input[type="date"] {
     padding: 6px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: 1px solid #3F2A2B;
+    border-radius: 5px;
     font-size: 14px;
     margin-bottom: 10px;
     width: min-content;
@@ -83,7 +136,7 @@
     border: none;
     border-radius: 25px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 1rem;
     transition: background-color 0.2s;
     width: min-content;
 }
@@ -95,14 +148,5 @@
 
 .profileButtonContainer {
     padding-top: 5px;
-}
-
-.deleteButton{
-    background-color: #f4a261;
-    color: white;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    font-size: 14px; 
+    font-size: 1.5rem;
 }

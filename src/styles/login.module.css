@@ -68,7 +68,7 @@
     font-family: 'Urbana', sans-serif;
     text-transform: uppercase;
     border: 2px solid #F0544F;
-    border-radius: 5px;
+    border-radius: 25px;
     color: #F0544F;
     transition: background-color 0.3s, color 0.3s;
 }
