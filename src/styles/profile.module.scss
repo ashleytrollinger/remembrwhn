@@ -81,7 +81,7 @@
 
 // Your Capsules and + Button
 .capsulesButton,
-.addButton {
+.addButton, .friendsButton {
     display: inline-block;
     padding: 0.75rem 1.25rem;
     border-radius: 10rem;
@@ -97,7 +97,7 @@
 }
 
 .capsulesButton:before,
-.addButton:before {
+.addButton:before, .friendsButton:before {
     content: '';
     position: absolute;
     bottom: 0;
@@ -111,12 +111,14 @@
 }
 
 .capsulesButton:hover,
-.addButton:hover {
+.addButton:hover,
+.friendsButton:hover {
     color: #fff;
 }
 
 .capsulesButton:hover:before,
-.addButton:hover:before {
+.addButton:hover:before,
+.friendsButton:hover:before {
     width: 0; // Change the width to 0 on hover
 }
 

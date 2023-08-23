@@ -32,7 +32,6 @@
 
 .logo {
     max-height: 100%;
-
 }
 
 .main-content {
@@ -41,6 +40,7 @@
     margin-bottom: 8rem;
     padding: 20px;
     border-radius: 15px;
+    
 }
 
 .text-container {
@@ -62,38 +62,45 @@
     gap: 10px;
 }
 
-.button {
+.getStartedButton, .loginButton {
     display: inline-block;
-    padding: 10px 20px;
-    font-weight: bold;
+    padding: 0.75rem 1.25rem;
+    border-radius: 10rem;
+    color: #fff;
     text-transform: uppercase;
-    border-radius: 35px;
-    transition: background-color 0.3s, color 0.3s;
     font-size: 1.5rem;
+    letter-spacing: 0.15rem;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    background-color: #F0544F; 
 }
 
-.getStartedButton {
-    border: 2px solid #D81E5B;
-    color: #D81E5B;
-    background-color: white;
-}
 
-.getStartedButton:hover {
+.getStartedButton:before, .loginButton:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background-color: #D81E5B;
-    color: white;
-    text-decoration: none;
+    border-radius: 10rem;
+    z-index: -2;
+    transition: all 0.3s;
 }
 
-.loginButton {
-    border: 2px solid #e76f51;
-    color: #e76f51;
-    background-color: white;
-}
 
+.getStartedButton:hover,
 .loginButton:hover {
-    background-color: #e76f51;
-    color: white;
-    text-decoration: none;
+    color: #fff;
+}
+
+
+.getStartedButton:hover:before,
+.loginButton:hover:before {
+    width: 0; 
 }
 
 /* Responsive Tailwind CSS classes */

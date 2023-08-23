@@ -1,0 +1,126 @@
+/* Friends.module.css */
+
+.friendsContainer {
+    display: flex;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.friendsListContainer {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.friendsListContainer h2 {
+    font-size: 2rem;
+}
+
+.searchContainer {
+    flex: 1;
+}
+
+.searchContainer h2 {
+    font-size: 2rem;
+}
+
+.friendsList {
+    list-style: none;
+    padding: 0;
+}
+
+.friendItem {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.searchContainer {
+    font-size: 1.5rem;
+width: 14rem;
+}
+
+.searchResultsList {
+    list-style: none;
+    padding: 0;
+}
+
+.searchResultItem {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.5rem;
+}
+
+.searchButton {
+    background-color: #F0544F;
+    border-radius: 25px;
+    font-size: 1.3rem;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.addButton {
+    background-color: #F0544F;
+    border-radius: 25px;
+    font-size: 1rem;
+    color: #fff;
+    border-radius: 55px;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+@media screen and (min-width: 768px) {
+    .friendsContainer {
+        flex-direction: row;
+    }
+
+    .friendsListContainer {
+        margin-right: 20px;
+    }
+
+    .searchContainer {
+        flex: 1;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .friendsContainer {
+        flex-direction: column;
+        /* Stack elements vertically on smaller screens */
+    }
+
+    .friendsListContainer {
+        margin-right: 0;
+        /* Remove right margin on smaller screens */
+    }
+
+    .searchContainer {
+        margin-top: 20px;
+        /* Add top margin for separation on smaller screens */
+    }
+
+    .searchContainer h2 {
+        font-size: 1.5rem;
+    }
+
+    .searchResultItem {
+        font-size: 1.2rem;
+    }
+
+    .searchButton {
+        font-size: 1.1rem;
+        margin-top: 10px;
+    }
+
+    .addButton {
+        font-size: 1rem;
+        margin-top: 10px;
+    }
+}

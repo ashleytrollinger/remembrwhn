@@ -18,7 +18,7 @@ export default function Home() {
           </div>
           <div className={styles['text-container']}>
             <p className={`${styles['welcome-text']}`}>
-              Preserve your cherished memories in time capsules with RemembrWhn. Create capsules with notes, photos, and more, set to unlock at the perfect moment. Collaborate with friends, share the joy, and unlock memories together. Welcome to RemembrWhn – where moments matter.
+             Time Capsules without the dirt. 
             </p>
             <div className={`${styles['button-container']}`}>
               <Link href="/signup" className={`${styles.button} ${styles['getStartedButton']}`}>

@@ -5,12 +5,17 @@ import RootLayout from '../app/layout';
 import styles from '../styles/profile.module.scss';
 import CapsuleCreation from '../components/CapsuleCreation';
 import CapsuleTags from '../components/CapsuleTags';
+import Friends from '../components/Friends';
 
 export default function Profile() {
   const router = useRouter();
-  const [showCapsuleTags, setShowCapsuleTags] = useState(true);
+  const [activeTab, setActiveTab] = useState('capsules'); // Default to "Your Capsules" tab
   const [user, setUser] = useState(null);
   const [userData, setUserData] = useState(null);
+
+  const handleTabClick = (tabName) => {
+    setActiveTab(tabName);
+  };
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -21,7 +26,7 @@ export default function Profile() {
           console.log(data);
           console.log("the user id is: " + data.user.email);
           const userEmail = data.user.email;
-          // Fetch additional user data from the 'users' table
+
           const { data: userData, error: userError } = await supabase
             .from('users')
             .select('*')
@@ -34,7 +39,6 @@ export default function Profile() {
             return;
           }
 
-          // Merge the user data with the existing user object
           setUserData(userData);
         } else {
           router.push('/login');
@@ -48,9 +52,7 @@ export default function Profile() {
     fetchUserData();
   }, [router]);
 
-
   if (!user || !userData) {
-    // Handle case when user data is still loading or user is not logged in
     return <div>Loading...</div>;
   }
 
@@ -61,7 +63,6 @@ export default function Profile() {
           <h2 className={styles.welcomeHeading}>
             Welcome back, <em>{userData[0].username || userData[0].email}</em> !
           </h2>
-          
         </div>
         <div className={styles.userDetailsContainer}>
           <div className={styles.userDetails}>
@@ -72,33 +73,43 @@ export default function Profile() {
 
         <div className={styles.toggleButtonGroup}>
           <button
-            onClick={() => setShowCapsuleTags(true)}
-            className={`${styles.capsulesButton} ${showCapsuleTags ? styles.active : ''}`}
+            onClick={() => handleTabClick('capsules')}
+            className={`${styles.capsulesButton} ${activeTab === 'capsules' ? styles.active : ''}`}
           >
             Your Capsules
           </button>
           <button
-            onClick={() => setShowCapsuleTags(false)}
-            className={`${styles.addButton} ${!showCapsuleTags ? styles.active : ''}`}
+            onClick={() => handleTabClick('addCapsules')}
+            className={`${styles.addButton} ${activeTab === 'addCapsules' ? styles.active : ''}`}
           >
             +
+          </button>
+          <button
+            onClick={() => handleTabClick('friends')}
+            className={`${styles.friendsButton} ${activeTab === 'friends' ? styles.active : ''}`}
+          >
+            Friends
           </button>
         </div>
 
         <div className={styles.contentContainer}>
           <div
-            className={`${styles.content} ${showCapsuleTags ? '' : styles.hidden}`}
+            className={`${styles.content} ${activeTab === 'capsules' ? '' : styles.hidden}`}
           >
-            {showCapsuleTags && <CapsuleTags user={userData} />}
+            {activeTab === 'capsules' && <CapsuleTags user={userData} />}
           </div>
           <div
-            className={`${styles.content} ${showCapsuleTags ? styles.hidden : ''}`}
+            className={`${styles.content} ${activeTab === 'addCapsules' ? styles.hidden : ''}`}
           >
-            {!showCapsuleTags && <CapsuleCreation user={userData} />}
+            {activeTab === 'addCapsules' && <CapsuleCreation user={userData} />}
+          </div>
+          <div
+            className={`${styles.content} ${activeTab === 'friends' ? '' : styles.hidden}`}
+          >
+            {activeTab === 'friends' && <Friends />}
           </div>
         </div>
       </div>
     </RootLayout>
   );
 }
-

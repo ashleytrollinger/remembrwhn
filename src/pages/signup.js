@@ -96,8 +96,8 @@ export default function SignUp() {
               </div>
               <button type="submit" className={styles['signup-button']}>Sign Up</button>
             </form>
-            <div className={styles['login-link']}>
-              <p>Already have an account? <Link href="/login">Log In</Link></p>
+            <div >
+              <p className={styles['login-p']}>Already have an account? <Link href="/login"className={styles['login-link']}>Log In</Link></p>
             </div>
           </div>
         </main>
