@@ -54,7 +54,7 @@ export default function Profile() {
   if (!user || !userData) {
     return <div>Loading...</div>;
   }
-  console.log("Active tab:", activeTab);
+
   return (
     <RootLayout>
       <div className={styles.profileContainer}>
@@ -79,7 +79,6 @@ export default function Profile() {
           </button>
           <button
             onClick={() => {
-              console.log("Clicked + button"); // Add this line
               handleTabClick('addCapsules');
             }}
             className={`${styles.addButton} ${activeTab === 'addCapsules' ? styles.active : ''}`}
