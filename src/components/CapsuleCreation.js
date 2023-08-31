@@ -50,7 +50,7 @@ export default function CapsuleCreation(props) {
         user_id: props.user[0].id,
         title,
         message,
-        image_url: validPhotoUrls,
+
         expiration_date: new Date(openDate).toISOString(),
       };
     
