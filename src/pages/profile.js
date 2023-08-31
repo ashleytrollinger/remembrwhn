@@ -23,8 +23,7 @@ export default function Profile() {
         const { data } = await supabase.auth.getUser();
         if (data) {
           setUser(data);
-          console.log(data);
-          console.log("the user id is: " + data.user.email);
+
           const userEmail = data.user.email;
 
           const { data: userData, error: userError } = await supabase
@@ -32,7 +31,7 @@ export default function Profile() {
             .select('*')
             .eq('email', userEmail)
 
-          console.log("userdata", userData[0]);
+
 
           if (userError) {
             console.error('Error fetching user data:', userError.message);

@@ -19,14 +19,13 @@ export default function Login() {
         password: password,
       });
 
-      console.log('Login response:', { user, error }); // Debugging line
 
       if (error) {
         console.error('Error logging in:', error.message);
         return;
       }
 
-      console.log('Login successful:', user);
+
 
       // Store the access token in local storage
       if (user?.session?.access_token) {

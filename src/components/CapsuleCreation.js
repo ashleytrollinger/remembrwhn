@@ -61,7 +61,7 @@ export default function CapsuleCreation(props) {
           console.error('Error inserting capsule data:', error.message);
           return;
         }
-        console.log('Capsule data inserted successfully:', data);
+
     
         // Reset the form
         setTitle('');

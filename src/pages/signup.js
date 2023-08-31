@@ -29,7 +29,7 @@ export default function SignUp() {
         return;
       }
 
-      console.log('Signup successful:', user);
+
 
       // Store authentication data in the user's profile
       const authData = {
@@ -58,7 +58,7 @@ export default function SignUp() {
         return;
       }
 
-      console.log('User data stored:', userData);
+  
 
       // Redirect to a new page or perform other actions after successful signup
       router.push('/profile'); // Example: Redirect to the profile page
