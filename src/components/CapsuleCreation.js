@@ -3,7 +3,7 @@ import React from 'react';
 import supabase from '../../utils/supabase';
 import styles from '../styles/capsule-creation.module.css';
 
-export default function CapsuleCreationForm(props) {
+export default function CapsuleCreation(props) {
   const [title, setTitle] = React.useState('');
   const [message, setMessage] = React.useState('');
   const [photos, setPhotos] = React.useState([]);
@@ -27,75 +27,54 @@ export default function CapsuleCreationForm(props) {
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    // Check if the user already has a bucket
-  const userBucketName = `user-bucket-${props.user[0].id}`; // Use a unique identifier (e.g., user ID) for the bucket name
-  const { data: existingBucketData, error: existingBucketError } = await supabase
-    .storage
-    .getBucket(userBucketName);
-
-  // Create the user's bucket if it doesn't exist
-  if (existingBucketError) {
-    const { data: bucketData, error: bucketError } = await supabase
-      .storage
-      .createBucket(userBucketName, {
-        public: false,
-        allowedMimeTypes: ['image/png'],
-        fileSizeLimit: 1024
-      });
-
-    if (bucketError) {
-      console.error('Error creating user bucket:', bucketError.message);
-      return;
-    }
-  }
-
-  // Upload photos to the user's bucket
-  const photoUrls = await Promise.all(photos.map(async (photo) => {
-    const { data, error } = await supabase.storage
-      .from(userBucketName) // Use the user's bucket name here
-      .upload(photo.name, photo);
-
-    if (error) {
-      console.error('Error uploading photo:', error.message);
-      return null;
-    }
-    return data.Key;
-  }));
-
-  // Filter out any failed photo uploads
-  const validPhotoUrls = photoUrls.filter((url) => url !== null);
-
-  // Construct the capsule data to be inserted
-  const capsuleData = {
-    user_id: props.user[0].id,
-    title,
-    message,
-    image_url: validPhotoUrls, // Store array of image URLs
-    expiration_date: new Date(openDate).toISOString(),
-  };
-
-  // Insert the capsule data into the Supabase database
-  try {
-    const { data, error } = await supabase.from('capsules').insert([capsuleData]);
-    if (error) {
-      console.error('Error inserting capsule data:', error.message);
-      return;
-    }
-    console.log('Capsule data inserted successfully:', data);
-    // Reset the form
-    setTitle('');
-    setMessage('');
-    setPhotos([]);
-    setOpenDate('');
-
-    Router.push('/profile');
-  } catch (error) {
-    console.error('Error inserting capsule data:', error.message);
-  }
-};
-
+      event.preventDefault();
+    
+      // // Upload photos to the shared bucket
+      // const photoUrls = await Promise.all(photos.map(async (photo) => {
+      //   const { data, error } = await supabase.storage
+      //     .from('capsule-images') // Use the shared bucket name
+      //     .upload(photo.name, photo);
+    
+      //   if (error) {
+      //     console.error('Error uploading photo:', error.message);
+      //     return null;
+      //   }
+      //   return data.Key;
+      // }));
+    
+      // // Filter out any failed photo uploads
+      // const validPhotoUrls = photoUrls.filter((url) => url !== null);
+    
+      // Construct the capsule data to be inserted
+      const capsuleData = {
+        user_id: props.user[0].id,
+        title,
+        message,
+        image_url: validPhotoUrls,
+        expiration_date: new Date(openDate).toISOString(),
+      };
+    
+      // Insert the capsule data into the Supabase database
+      try {
+        const { data, error } = await supabase.from('capsules').insert([capsuleData]);
+        if (error) {
+          console.error('Error inserting capsule data:', error.message);
+          return;
+        }
+        console.log('Capsule data inserted successfully:', data);
+    
+        // Reset the form
+        setTitle('');
+        setMessage('');
+        setPhotos([]);
+        setOpenDate('');
+    
+        Router.push('/profile');
+      } catch (error) {
+        console.error('Error inserting capsule data:', error.message);
+      }
+    };
+    
 
   return (
     <div className={styles.capsuleCreationFormContainer}>
@@ -103,7 +82,7 @@ export default function CapsuleCreationForm(props) {
       <form className={styles.capsuleCreationForm} onSubmit={handleSubmit}>
         <label htmlFor="title">Capsule Title:</label>
         <p className={styles.inputDescription}>
-          Titles will be displayed on your profile but contents of capsule will be locked
+          Titles will be displayed on your profile, but contents of the capsule will be locked.
         </p>
         <input
           type="text"
@@ -121,7 +100,7 @@ export default function CapsuleCreationForm(props) {
           onChange={handleMessageChange}
           required
         />
-        <label htmlFor="photos">Upload Photos:</label>
+        {/* <label htmlFor="photos">Upload Photos:</label>
         <input
           type="file"
           id="photos"
@@ -129,7 +108,7 @@ export default function CapsuleCreationForm(props) {
           accept="image/*"
           multiple
           onChange={handlePhotosChange}
-        />
+        /> */}
         <label htmlFor="openDate">Open Date:</label>
         <p className={styles.inputDescription}>
           This is when your capsule will be visible again. Choose wisely as this cannot be changed.

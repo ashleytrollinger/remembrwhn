@@ -55,7 +55,7 @@ export default function Profile() {
   if (!user || !userData) {
     return <div>Loading...</div>;
   }
-
+  console.log("Active tab:", activeTab);
   return (
     <RootLayout>
       <div className={styles.profileContainer}>
@@ -79,37 +79,34 @@ export default function Profile() {
             Your Capsules
           </button>
           <button
-            onClick={() => handleTabClick('addCapsules')}
+            onClick={() => {
+              console.log("Clicked + button"); // Add this line
+              handleTabClick('addCapsules');
+            }}
             className={`${styles.addButton} ${activeTab === 'addCapsules' ? styles.active : ''}`}
           >
             +
           </button>
-          <button
+          {/* <button
             onClick={() => handleTabClick('friends')}
             className={`${styles.friendsButton} ${activeTab === 'friends' ? styles.active : ''}`}
           >
             Friends
-          </button>
+          </button> */}
         </div>
 
         <div className={styles.contentContainer}>
-          <div
-            className={`${styles.content} ${activeTab === 'capsules' ? '' : styles.hidden}`}
-          >
+          <div className={`${styles.content} ${activeTab === 'capsules' ? '' : styles.hidden}`}>
             {activeTab === 'capsules' && <CapsuleTags user={userData} />}
           </div>
-          <div
-            className={`${styles.content} ${activeTab === 'addCapsules' ? styles.hidden : ''}`}
-          >
+          <div className={`${styles.content} ${activeTab === 'addCapsules' ? '' : styles.hidden}`}>
             {activeTab === 'addCapsules' && <CapsuleCreation user={userData} />}
           </div>
-          <div
-            className={`${styles.content} ${activeTab === 'friends' ? '' : styles.hidden}`}
-          >
+          {/* <div className={`${styles.content} ${activeTab === 'friends' ? '' : styles.hidden}`}>
             {activeTab === 'friends' && <Friends />}
-          </div>
+          </div> */}
         </div>
       </div>
-    </RootLayout>
+    </RootLayout >
   );
 }
